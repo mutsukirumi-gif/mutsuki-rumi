@@ -1,156 +1,265 @@
 <!DOCTYPE html>
-<html lang="jp">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>睦月ルミ - WORKS</title>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@400;700;900&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="WORKS.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  </head>
-  <body>
-      <div class="loader">
-        <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-          <defs>
-            <filter id="drop" x="-100%" y="-100%" width="250%" height="250%">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-              <feOffset dx="0" dy="60" result="offsetblur"></feOffset>
-              <feFlood flood-color="#555" flood-opacity="0.12"></feFlood>
-              <feComposite in2="offsetblur" operator="in"></feComposite>
-              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-            </filter>
-            <filter id="drop2" x="-100%" y="-100%" width="250%" height="250%">
-              <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-              <feOffset dx="0" dy="6" result="offsetblur"></feOffset>
-              <feFlood flood-color="#555" flood-opacity="0.51"></feFlood>
-              <feComposite in2="offsetblur" operator="in"></feComposite>
-              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-            </filter>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
-              <feBlend />
-            </filter>
-            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="400" y1="100" x2="400" y2="600">
-              <stop offset="0" style="stop-color:#059FF6" />
-              <stop offset="1" style="stop-color:#0369F3" />
-            </linearGradient>
-            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="400">
-              <stop offset="0" style="stop-color:#059FF6" />
-              <stop offset="1" style="stop-color:#0408A7" />
-            </linearGradient>
-            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="400" y1="500" x2="400" y2="600">
-              <stop offset="0" style="stop-color:#059FF6" />
-              <stop offset="1" style="stop-color:#0369F3" />
-            </linearGradient>
-            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="300">
-              <stop offset="0" style="stop-color:#02DBFE" />
-              <stop offset="1" style="stop-color:#0369F3" />
-            </linearGradient>
-            <clipPath id="mainMask"><circle cx="400" cy="300" r="100" /></clipPath>
-            <clipPath id="otherMask"><rect x="300" y="0" width="200" height="400" rx="100" ry="100" /></clipPath>
-          </defs>
-          <g filter="url(#drop)">
-            <g id="whole" clip-path="url(#mainMask)">
-              <g class="dots1" filter="url(#goo)" fill="url(#grad1)">
-                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0369F3" stroke-width="23" stroke-dasharray="160 65" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" />
-              </g>
-              <g class="dots2" filter="url(#goo)" fill="url(#grad2)">
-                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0408A7" stroke-width="23" stroke-dasharray="160 40" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" />
-              </g>
-              <g class="dots3" filter="url(#goo)" fill="url(#grad3)">
-                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="url(#grad3)" stroke-width="23" stroke-dasharray="240" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" />
-              </g>
-              <g class="dots4" filter="url(#goo)" fill="url(#grad4)">
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
-                <circle class="dot" cx="0" cy="0" r="20" />
-              </g>
-            </g>
-          </g>
-          <g filter="url(#drop2)">
-            <g clip-path="url(#otherMask)">
-              <g class="dots5" fill="url(#grad2)" filter="url(#goo)">
-                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
-                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
-                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
-                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
-                <circle class="outsideDot" cx="0" cy="0" r="20" />
-              </g>
-            </g>
-          </g>
-        </svg>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>睦月ルミ — Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&family=Zen+Maru+Gothic:wght@400;700&family=M+PLUS+1:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f4f8ff;--surface:#ffffff;--blue-l:#B5D4F4;--blue-m:#7bbfea;--blue-d:#378ADD;--navy:#042C53;--pink:#f4c8db;--yellow:#ffe9a8;--text:#1e2d45;--muted:#7a9bbf;--border:#daeeff;--r-m:16px;--r-l:28px;--r-full:9999px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Zen Maru Gothic',sans-serif;overflow-x:hidden;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+
+    .loader{position:fixed;inset:0;background:#cee7ff;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s ease;}
+    .loader.hide{opacity:0;pointer-events:none;}
+    .loader svg{width:400px;height:300px;visibility:hidden;}
+
+    .cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--blue-d);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;mix-blend-mode:multiply;}
+    .cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--blue-m);pointer-events:none;z-index:9997;transform:translate(-50%,-50%);opacity:.6;transition:width .3s,height .3s,opacity .3s;}
+    .cursor.hovered{width:6px;height:6px;}
+    .cursor-ring.hovered{width:56px;height:56px;opacity:.3;}
+
+    .nav{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(244,248,255,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav__inner{max-width:1100px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;}
+    .nav__logo{font-family:'M PLUS 1',sans-serif;font-size:.75rem;font-weight:900;letter-spacing:.2em;color:var(--navy);text-transform:uppercase;}
+    .nav__menu{display:flex;gap:40px;list-style:none;}
+    .nav__menu a{font-family:'M PLUS 1',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 14px;border-radius:var(--r-full);transition:background .25s,color .25s;}
+    .nav__menu a:hover{background:var(--blue-l);color:var(--navy);}
+
+    .page-header{padding:140px 48px 60px;text-align:center;background:linear-gradient(to bottom,var(--blue-l) 0%,var(--bg) 100%);}
+    .page-header__label{font-family:'M PLUS 1',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--blue-d);text-transform:uppercase;margin-bottom:12px;display:block;}
+    .page-header__title{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,5vw,4rem);font-weight:300;letter-spacing:.3em;color:var(--navy);}
+
+    /* WORKSグリッド */
+    .works{max-width:1100px;margin:0 auto;padding:60px 48px 120px;}
+
+    .works-section{margin-bottom:80px;}
+    .works-section__header{
+      display:flex;align-items:center;gap:16px;
+      margin-bottom:32px;
+    }
+    .works-section__title{
+      font-family:'Shippori Mincho',serif;
+      font-size:1.4rem;font-weight:400;
+      letter-spacing:.1em;color:var(--navy);
+    }
+    .works-section__line{flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);}
+
+    .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+
+    .work-card{
+      border:1px solid var(--border);
+      border-radius:var(--r-l);
+      overflow:hidden;
+      background:var(--surface);
+      box-shadow:0 4px 24px rgba(123,191,234,.10);
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,border-color .35s ease;
+      position:relative;
+    }
+    .work-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 16px 48px rgba(123,191,234,.25);border-color:var(--blue-m);}
+    .work-card__img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .5s ease,filter .5s ease;filter:brightness(.95);}
+    .work-card:hover .work-card__img{transform:scale(1.06);filter:brightness(1.05);}
+    .work-card__body{padding:16px 20px;}
+    .work-card__tag{
+      display:inline-block;font-family:'M PLUS 1',sans-serif;
+      font-size:.6rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:#fff;
+      padding:3px 12px;border-radius:var(--r-full);margin-bottom:8px;
+    }
+    .works-section:nth-child(1) .work-card__tag{background:var(--blue-m);}
+    .works-section:nth-child(2) .work-card__tag{background:var(--pink);}
+    .works-section:nth-child(3) .work-card__tag{background:var(--yellow);color:var(--navy);}
+    .work-card__title{font-family:'Zen Maru Gothic',sans-serif;font-size:.92rem;font-weight:700;color:var(--navy);}
+
+    [data-fade]{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease;}
+    [data-fade].is-visible{opacity:1;transform:translateY(0);}
+    [data-fade-delay="1"]{transition-delay:.15s;}
+
+    .footer{border-top:1px solid var(--border);padding:24px 48px;text-align:center;background:var(--surface);}
+    .footer p{font-family:'M PLUS 1',sans-serif;font-size:.62rem;letter-spacing:.1em;color:var(--muted);}
+
+    @media(max-width:768px){
+      .nav__inner{padding:12px 16px;}
+      .nav__menu{gap:4px;}
+      .nav__menu a{font-size:.62rem;padding:4px 8px;flex-shrink:0;}
+      .cursor,.cursor-ring{display:none;}
+      .page-header{padding:100px 20px 40px;}
+      .works{padding:40px 20px 80px;}
+      .works-grid{grid-template-columns:1fr;}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="loader" id="loader">
+    <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+      <defs>
+        <filter id="drop" x="-100%" y="-100%" width="250%" height="250%"><feGaussianBlur stdDeviation="5" result="coloredBlur"/><feOffset dx="0" dy="60" result="offsetblur"/><feFlood flood-color="#555" flood-opacity="0.12"/><feComposite in2="offsetblur" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="drop2" x="-100%" y="-100%" width="250%" height="250%"><feGaussianBlur stdDeviation="6" result="coloredBlur"/><feOffset dx="0" dy="6" result="offsetblur"/><feFlood flood-color="#555" flood-opacity="0.51"/><feComposite in2="offsetblur" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm"/><feBlend/></filter>
+        <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="400" y1="100" x2="400" y2="600"><stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0369F3"/></linearGradient>
+        <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="400"><stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0408A7"/></linearGradient>
+        <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="400" y1="500" x2="400" y2="600"><stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0369F3"/></linearGradient>
+        <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="300"><stop offset="0" style="stop-color:#02DBFE"/><stop offset="1" style="stop-color:#0369F3"/></linearGradient>
+        <clipPath id="mainMask"><circle cx="400" cy="300" r="100"/></clipPath>
+        <clipPath id="otherMask"><rect x="300" y="0" width="200" height="400" rx="100" ry="100"/></clipPath>
+      </defs>
+      <g filter="url(#drop)"><g id="whole" clip-path="url(#mainMask)">
+        <g class="dots1" filter="url(#goo)" fill="url(#grad1)"><circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0369F3" stroke-width="23" stroke-dasharray="160 65"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/></g>
+        <g class="dots2" filter="url(#goo)" fill="url(#grad2)"><circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0408A7" stroke-width="23" stroke-dasharray="160 40"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/></g>
+        <g class="dots3" filter="url(#goo)" fill="url(#grad3)"><circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="url(#grad3)" stroke-width="23" stroke-dasharray="240"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/></g>
+        <g class="dots4" filter="url(#goo)" fill="url(#grad4)"><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/></g>
+      </g></g>
+      <g filter="url(#drop2)"><g clip-path="url(#otherMask)"><g class="dots5" fill="url(#grad2)" filter="url(#goo)"><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/></g></g></g>
+    </svg>
+  </div>
+
+  <header>
+    <nav class="nav">
+      <div class="nav__inner">
+        <span class="nav__logo">Mutsuki Rumi</span>
+        <ul class="nav__menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="PROFILE.html">Profile</a></li>
+          <li><a href="WORKS.html">Works</a></li>
+          <li><a href="HP依頼.html">Request</a></li>
+        </ul>
       </div>
-    <header>
-      <div class="header">
-        <div class="menu">
-          <a href="index.html">HOME</a>
-          <a href="PROFILE.html">PROFILE</a>
-          <a href="WORKS.html">WORKS</a>
-          <a href="HP依頼.html">HP依頼</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header" data-fade>
+      <span class="page-header__label">// Works</span>
+      <h1 class="page-header__title">活動実績</h1>
+    </div>
+
+    <div class="works">
+      <div class="works-section" data-fade>
+        <div class="works-section__header">
+          <h2 class="works-section__title">ゲーム配信</h2>
+          <div class="works-section__line"></div>
+        </div>
+        <div class="works-grid">
+          <a href="https://www.youtube.com/live/qsR4Jw2q86g?si=0BE1giVkeXZ2qh2r" target="_blank" class="work-card">
+            <img src="あんスタ.jpg" alt="あんスタ配信" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Game</span>
+              <p class="work-card__title">あんスタ配信</p>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/watch?v=CLj-F-FuhrI&t=4807s" target="_blank" class="work-card">
+            <img src="マイクラ.jpg" alt="マイクラ配信" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Game</span>
+              <p class="work-card__title">マイクラ配信</p>
+            </div>
+          </a>
         </div>
       </div>
-    </header>
 
-    <main>
-      <section class="works">
-        <div class="works-list">
-          <div class="game-item">
-            <h2 class="work-title">ゲーム配信</h2>
-            <a href="https://www.youtube.com/live/qsR4Jw2q86g?si=0BE1giVkeXZ2qh2r" target="_blank">
-              <img src="あんスタ.jpg" alt="Work 1">
-            </a>
-            <p class="work-description">あんスタ配信</p>
-            <a href="https://www.youtube.com/watch?v=CLj-F-FuhrI&t=4807s" target="_blank">
-              <img src="マイクラ.jpg" alt="Work 3">
-            </a>
-            <p class="work-description">マイクラ配信</p>
-          </div>
-          <div class="study-item">
-            <h2 class="work-title">学習コンテンツ</h2>
-            <a href="https://www.youtube.com/watch?v=IjesujZtqWc&t=63s" target="_blank">
-              <img src="プログラマー解説.jpg" alt="Work 2">
-            </a>
-            <p class="work-description">プログラマー解説</p>
-            <a href="https://www.youtube.com/watch?v=gZimz-SBgcY&t=7764s" target="_blank">
-              <img src="勉強配信.jpg" alt="Work 3">
-            </a>
-            <p class="work-description">勉強配信</p>
-          </div>
-          <div class="TALK-item">
-            <h2 class="work-title">トーク配信</h2>
-            <a href="#" target="_blank">
-              <img src="雑談1.jpg" alt="Work 3">
-            </a>
-            <p class="work-description">麻辣湯作ってみた</p>
-            <a href="https://www.youtube.com/watch?v=apIXPnGbOVo&t=2587s" target="_blank">
-              <img src="雑談2.jpg" alt="Work 3">
-            </a>
-            <p class="work-description">雑談配信</p>
-          </div>
+      <div class="works-section" data-fade data-fade-delay="1">
+        <div class="works-section__header">
+          <h2 class="works-section__title">学習コンテンツ</h2>
+          <div class="works-section__line"></div>
         </div>
-      </section>
-    </main>
+        <div class="works-grid">
+          <a href="https://www.youtube.com/watch?v=IjesujZtqWc&t=63s" target="_blank" class="work-card">
+            <img src="プログラマー解説.jpg" alt="プログラマー解説" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Study</span>
+              <p class="work-card__title">プログラマー解説</p>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/watch?v=gZimz-SBgcY&t=7764s" target="_blank" class="work-card">
+            <img src="勉強配信.jpg" alt="勉強配信" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Study</span>
+              <p class="work-card__title">勉強配信</p>
+            </div>
+          </a>
+        </div>
+      </div>
 
-    <script src="script.js"></script>
-    <script src="WORKS.js"></script>
-  </body>
+      <div class="works-section" data-fade>
+        <div class="works-section__header">
+          <h2 class="works-section__title">トーク配信</h2>
+          <div class="works-section__line"></div>
+        </div>
+        <div class="works-grid">
+          <a href="#" class="work-card">
+            <img src="雑談1.jpg" alt="麻辣湯作ってみた" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Talk</span>
+              <p class="work-card__title">麻辣湯作ってみた</p>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/watch?v=apIXPnGbOVo&t=2587s" target="_blank" class="work-card">
+            <img src="雑談2.jpg" alt="雑談配信" class="work-card__img">
+            <div class="work-card__body">
+              <span class="work-card__tag">Talk</span>
+              <p class="work-card__title">雑談配信</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Copyright &copy; 2026 Mutsuki Rumi All rights reserved.</p>
+  </footer>
+
+  <noscript><style>.loader{display:none;}[data-fade]{opacity:1;transform:none;}</style></noscript>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.classList.add('hovered');ring.classList.add('hovered');});
+      el.addEventListener('mouseleave',()=>{cursor.classList.remove('hovered');ring.classList.remove('hovered');});
+    });
+    window.addEventListener('load',()=>{
+      const loader=document.getElementById('loader');
+      gsap.set('svg',{visibility:'visible'});
+      gsap.set('.dot',{transformOrigin:'50% 50%',attr:{cx:'random(350,450)',cy:440,r:'random(4,20)'}});
+      gsap.set('.outsideDot',{transformOrigin:'50% 50%',attr:{cx:'random(370,420)',cy:420,r:'random(3,19)'}});
+      gsap.to('.dots1 .dot',{duration:'random(2,8)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'linear'}).seek(100);
+      gsap.to('.dots2 .dot',{duration:'random(2,5)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'sine.in'}).seek(100);
+      gsap.to('.dots3 .dot',{duration:'random(6,12)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'sine.in'}).seek(100);
+      gsap.to('.dots4 .dot',{duration:'random(3,9)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'sine.in'}).seek(100);
+      gsap.to('.dots5 .outsideDot',{duration:'random(3,9)',attr:{cy:'random(-220,-320)',r:0},stagger:{each:.16,repeat:-1},ease:'power2.in'}).seek(100);
+      gsap.to('.outline',{duration:gsap.utils.wrap([7,6.1,5.2]),svgOrigin:'400 300',rotation:gsap.utils.wrap([-360,-360]),ease:'linear',stagger:{each:1,repeat:-1}}).seek(200);
+      setTimeout(()=>{loader.classList.add('hide');setTimeout(()=>{loader.style.display='none';},400);},2000);
+    });
+    document.querySelectorAll('a[href]').forEach(link=>{
+      link.addEventListener('click',e=>{
+        const href=link.getAttribute('href');
+        if(!href||href.startsWith('http')||href.startsWith('#'))return;
+        e.preventDefault();
+        const loader=document.getElementById('loader');
+        loader.style.display='flex';loader.style.opacity='1';loader.classList.remove('hide');
+        gsap.set('#mainSVG',{visibility:'visible'});
+        gsap.to('.dots1 .dot',{duration:'random(2,8)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'linear'}).seek(100);
+        gsap.to('.dots2 .dot',{duration:'random(2,5)',attr:{cy:'random(-220,-320)'},stagger:{each:.16,repeat:-1},ease:'sine.in'}).seek(100);
+        gsap.to('.outline',{duration:gsap.utils.wrap([7,6.1,5.2]),svgOrigin:'400 300',rotation:gsap.utils.wrap([-360,-360]),ease:'linear',stagger:{each:1,repeat:-1}}).seek(200);
+        setTimeout(()=>{window.location.href=href;},800);
+      });
+    });
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target);}});
+    },{threshold:.1});
+    document.querySelectorAll('[data-fade]').forEach(el=>io.observe(el));
+  </script>
+</body>
 </html>
