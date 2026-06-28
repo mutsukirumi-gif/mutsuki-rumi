@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>睦月ルミ — プログラマー系VTuber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&family=Zen+Maru+Gothic:wght@400;700&family=M+PLUS+1:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── トークン ── */
+    :root {
+      --bg:          #f4f8ff;
+      --surface:     #ffffff;
+      --blue-l:      #B5D4F4;
+      --blue-m:      #7bbfea;
+      --blue-d:      #378ADD;
+      --navy:        #042C53;
+      --pink:        #f4c8db;
+      --yellow:      #ffe9a8;
+      --text:        #1e2d45;
+      --muted:       #7a9bbf;
+      --border:      #daeeff;
+      --r-m:         16px;
+      --r-l:         28px;
+      --r-full:      9999px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Zen Maru Gothic',sans-serif;
+      overflow-x:hidden;
+    }
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── ローダー ── */
+    .loader{
+      position:fixed;inset:0;
+      background:#cee7ff;
+      display:flex;align-items:center;justify-content:center;
+      z-index:9999;
+      transition:opacity .4s ease;
+    }
+    .loader.hide{opacity:0;pointer-events:none;}
+    .loader svg{width:400px;height:300px;visibility:hidden;}
+
+    /* ── カスタムカーソル ── */
+    .cursor{
+      position:fixed;
+      width:12px;height:12px;
+      border-radius:50%;
+      background:var(--blue-d);
+      pointer-events:none;
+      z-index:9998;
+      transform:translate(-50%,-50%);
+      transition:transform .1s ease, width .3s ease, height .3s ease, opacity .3s ease;
+      mix-blend-mode:multiply;
+    }
+    .cursor-ring{
+      position:fixed;
+      width:40px;height:40px;
+      border-radius:50%;
+      border:1.5px solid var(--blue-m);
+      pointer-events:none;
+      z-index:9997;
+      transform:translate(-50%,-50%);
+      transition:transform .15s ease, width .3s ease, height .3s ease, opacity .3s ease;
+      opacity:.6;
+    }
+    .cursor.hovered{width:6px;height:6px;}
+    .cursor-ring.hovered{width:56px;height:56px;opacity:.3;}
+
+    /* ── ナビ ── */
+    .nav{
+      position:fixed;top:0;left:0;width:100%;z-index:200;
+      background:rgba(244,248,255,.75);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav__inner{
+      max-width:1100px;margin:0 auto;
+      padding:14px 48px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .nav__logo{
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.75rem;font-weight:900;
+      letter-spacing:.2em;color:var(--navy);
+      text-transform:uppercase;
+    }
+    .nav__menu{display:flex;gap:40px;list-style:none;}
+    .nav__menu a{
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.72rem;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;
+      color:var(--muted);
+      padding:4px 14px;border-radius:var(--r-full);
+      transition:background .25s,color .25s;
+    }
+    .nav__menu a:hover{background:var(--blue-l);color:var(--navy);}
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;width:100%;height:100svh;min-height:600px;
+      overflow: visible;  /* hidden → visible */
+      display:grid;place-items:center;
+      margin-bottom: 400px;
+    }
+    .hero__video-wrap{position:absolute;inset:0;z-index:0;}
+    .hero__video-wrap video{width:100%;height:100%;object-fit:cover;display:block;}
+    .hero__overlay{
+      position:absolute;inset:0;z-index:1;
+      background:linear-gradient(to bottom,
+        rgba(244,248,255,.3) 0%,
+        rgba(244,248,255,.1) 40%,
+        rgba(244,248,255,.85) 100%);
+    }
+
+    /* 泡 */
+    .hero__bubbles{
+      position:absolute;top:0;left:50%;transform:translateX(-50%);
+      width:100%;max-width:15rem;
+      opacity:.55;z-index:2;pointer-events:none;overflow:visible;
+    }
+    .bubbles circle{stroke:var(--blue-m);fill:none;}
+    .bubbles-large>g,.bubbles-small>g{transform:translateY(2048px);opacity:0;}
+    .bubbles-large>g:nth-of-type(1){animation:bup 6.5s infinite;}
+    .bubbles-large>g:nth-of-type(2){animation:bup 5.25s .25s infinite;}
+    .bubbles-large>g:nth-of-type(3){animation:bup 6s .75s infinite;}
+    .bubbles-large>g:nth-of-type(4){animation:bup 5.5s 1.5s infinite;}
+    .bubbles-large>g:nth-of-type(5){animation:bup 6.5s 4s infinite;}
+    .bubbles-small>g:nth-of-type(1){animation:bup 5.25s infinite;}
+    .bubbles-small>g:nth-of-type(2){animation:bup 5.75s infinite;}
+    .bubbles-small>g:nth-of-type(3){animation:bup 5.25s .25s infinite;}
+    .bubbles-small>g:nth-of-type(4){animation:bup 5.75s .325s infinite;}
+    .bubbles-small>g:nth-of-type(5){animation:bup 6s .125s infinite;}
+    .bubbles-small>g:nth-of-type(6){animation:bup 5.13s .25s infinite;}
+    .bubbles-small>g:nth-of-type(7){animation:bup 6.25s .35s infinite;}
+    .bubbles-small>g:nth-of-type(8){animation:bup 7s .2s infinite;}
+    .bubbles-small>g:nth-of-type(9){animation:bup 6.25s .233s infinite;}
+    @keyframes bup{
+      0%{opacity:0;}10%,90%{opacity:1;}
+      100%{opacity:0;transform:translateY(-1024px);}
+    }
+
+    /* キャラ */
+    .hero__chara{
+      position:absolute;bottom:0;left:50%;
+      transform:translateX(-50%);
+      width:clamp(220px,30vw,460px);
+      height:auto;z-index:3;pointer-events:none;
+      filter:drop-shadow(0 0 40px rgba(123,191,234,.35));
+      animation:float 4s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%,100%{transform:translateX(-50%) translateY(0);}
+      50%{transform:translateX(-50%) translateY(-14px);}
+    }
+
+    /* グリッチキャプション */
+    .hero__caption {
+      text-align: center;
+      padding: 100px 0;
+      width: 100%;
+    }
+
+    .glitch{
+      font-family:'Shippori Mincho',serif;
+      font-size:clamp(1.3rem,3.2vw,2.6rem);
+      font-weight:300;
+      letter-spacing:.28em;
+      color:var(--text);
+      display:inline-block;
+      position:relative;overflow:hidden;
+      height:1.4em;
+    }
+    /* 1ブロック分だけ表示 */
+    .glitch .block{display:inline-block;}
+    .glitch .block:last-child{
+      position:absolute;top:100%;left:0;
+      color:var(--blue-d);
+    }
+    .glitch .letter{
+      display:inline-block;
+      transition:transform .6s cubic-bezier(.76,0,.24,1);
+    }
+    .glitch:hover .letter{transform:translateY(-100%);}
+    .glitch .letter:nth-child(1){transition-delay:.00s;}
+    .glitch .letter:nth-child(2){transition-delay:.05s;}
+    .glitch .letter:nth-child(3){transition-delay:.10s;}
+    .glitch .letter:nth-child(4){transition-delay:.15s;}
+    .glitch .letter:nth-child(5){transition-delay:.20s;}
+    .glitch .letter:nth-child(6){transition-delay:.25s;}
+    .glitch .letter:nth-child(7){transition-delay:.30s;}
+    .glitch .letter:nth-child(8){transition-delay:.35s;}
+    .glitch .letter:nth-child(9){transition-delay:.40s;}
+    .glitch .letter:nth-child(10){transition-delay:.45s;}
+    .glitch .letter:nth-child(11){transition-delay:.50s;}
+    .glitch .letter:nth-child(12){transition-delay:.55s;}
+
+    /* 流れ星 */
+    .star-particle{
+      position:absolute;width:5px;height:5px;border-radius:50%;
+      background:rgba(255,255,255,.95);pointer-events:none;
+      transform:translate(-50%,-50%);z-index:10;
+      box-shadow:0 0 8px 3px rgba(123,191,234,.8);
+      animation:sfade .6s ease forwards;
+    }
+    @keyframes sfade{
+      0%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+      100%{opacity:0;transform:translate(-50%,-50%) scale(0);}
+    }
+
+    /* スクロール誘導 */
+    .hero__scroll{
+      position:absolute;bottom:24px;right:40px;z-index:4;
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+    }
+    .hero__scroll span{
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.6rem;font-weight:700;
+      letter-spacing:.18em;color:var(--muted);
+      text-transform:uppercase;
+      writing-mode:vertical-rl;
+    }
+    .hero__scroll-line{
+      width:1px;height:48px;
+      background:linear-gradient(to bottom,var(--blue-m),transparent);
+      animation:scroll-line 2s ease-in-out infinite;
+    }
+    @keyframes scroll-line{
+      0%{transform:scaleY(0);transform-origin:top;}
+      50%{transform:scaleY(1);transform-origin:top;}
+      51%{transform:scaleY(1);transform-origin:bottom;}
+      100%{transform:scaleY(0);transform-origin:bottom;}
+    }
+
+    /* ── ABOUT ── */
+    .about{
+      max-width:1100px;margin:0 auto;
+      padding: 400px 48px 120px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:80px;align-items:center;
+    }
+    .about__img-wrap{position:relative;}
+    .about__img-wrap::before{
+      content:'';
+      position:absolute;
+      inset:-16px;
+      border-radius:40px;
+      background:linear-gradient(135deg,var(--blue-l),var(--pink));
+      z-index:0;
+      opacity:.5;
+      filter:blur(24px);
+      animation:glow-pulse 3s ease-in-out infinite;
+    }
+    @keyframes glow-pulse{
+      0%,100%{opacity:.4;transform:scale(1);}
+      50%{opacity:.7;transform:scale(1.04);}
+    }
+    .about__img-wrap img{
+      position:relative;z-index:1;
+      width:100%;height:auto;
+      border-radius:32px;
+      filter:drop-shadow(0 8px 40px rgba(123,191,234,.25));
+    }
+    .about__text{
+      display:flex;flex-direction:column;gap:24px;
+    }
+    .about__label{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.68rem;font-weight:700;letter-spacing:.18em;
+      color:var(--blue-d);text-transform:uppercase;
+    }
+    .about__label::before{
+      content:'';display:block;
+      width:24px;height:1px;
+      background:var(--blue-d);
+    }
+    .about__heading{
+      font-family:'Shippori Mincho',serif;
+      font-size:clamp(1.5rem,2.8vw,2.2rem);
+      font-weight:400;letter-spacing:.06em;line-height:1.6;
+      color:var(--navy);
+    }
+    .about__cards{display:flex;flex-direction:column;gap:12px;}
+    .about__card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--r-m);
+      padding:16px 20px;
+      font-size:.88rem;color:var(--muted);line-height:1.8;
+      box-shadow:0 2px 16px rgba(123,191,234,.08);
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+    .about__card:hover{
+      transform:translateX(6px);
+      box-shadow:0 4px 24px rgba(123,191,234,.18);
+    }
+
+    /* ── LINKS ── */
+    .links{
+      padding:80px 48px 120px;
+      max-width:1100px;margin:0 auto;
+    }
+    .links__header{
+      display:flex;align-items:center;gap:16px;
+      margin-bottom:40px;
+    }
+    .links__label{
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.68rem;font-weight:700;letter-spacing:.18em;
+      color:var(--blue-d);text-transform:uppercase;
+    }
+    .links__line{
+      flex:1;height:1px;
+      background:linear-gradient(to right,var(--border),transparent);
+    }
+    .links__grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .link-card{
+      border:1px solid var(--border);
+      border-radius:var(--r-l);
+      overflow:hidden;
+      background:var(--surface);
+      box-shadow:0 4px 24px rgba(123,191,234,.10);
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,border-color .35s ease;
+      position:relative;
+    }
+    .link-card::after{
+      content:'';
+      position:absolute;inset:0;
+      border-radius:var(--r-l);
+      background:linear-gradient(135deg,transparent 60%,rgba(181,212,244,.15) 100%);
+      opacity:0;
+      transition:opacity .35s ease;
+    }
+    .link-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 16px 48px rgba(123,191,234,.25);
+      border-color:var(--blue-m);
+    }
+    .link-card:hover::after{opacity:1;}
+    .link-card__img{
+      width:100%;aspect-ratio:16/9;object-fit:cover;
+      display:block;
+      transition:transform .5s ease,filter .5s ease;
+      filter:brightness(.95);
+    }
+    .link-card:hover .link-card__img{
+      transform:scale(1.06);
+      filter:brightness(1.05);
+    }
+    .link-card__body{padding:18px 20px;}
+    .link-card__tag{
+      display:inline-block;
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.6rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:#fff;
+      padding:3px 12px;border-radius:var(--r-full);
+      margin-bottom:8px;
+    }
+    .link-card:nth-child(1) .link-card__tag{background:var(--pink);}
+    .link-card:nth-child(2) .link-card__tag{background:var(--blue-m);}
+    .link-card:nth-child(3) .link-card__tag{background:var(--yellow);color:var(--navy);}
+    .link-card__title{
+      font-family:'Zen Maru Gothic',sans-serif;
+      font-size:.92rem;font-weight:700;
+      color:var(--navy);
+    }
+
+    /* ── フェードイン ── */
+    [data-fade]{
+      opacity:0;transform:translateY(48px);
+      transition:opacity .9s ease,transform .9s ease;
+    }
+    [data-fade].is-visible{opacity:1;transform:translateY(0);}
+    [data-fade-delay="1"]{transition-delay:.15s;}
+    [data-fade-delay="2"]{transition-delay:.30s;}
+
+    /* ── フッター ── */
+    .footer{
+      border-top:1px solid var(--border);
+      padding:24px 48px;
+      text-align:center;
+      background:var(--surface);
+    }
+    .footer p{
+      font-family:'M PLUS 1',sans-serif;
+      font-size:.62rem;letter-spacing:.1em;
+      color:var(--muted);
+    }
+
+    .message-wrap {
+      text-align: center;
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    /* ── レスポンシブ ── */
+    @media(max-width:768px){
+      .nav__inner{padding:12px 16px;}
+      .nav__menu{gap:4px;}
+      .nav__menu a{font-size:.62rem;padding:4px 8px;}
+      .cursor,.cursor-ring{display:none;}
+      .about{
+        grid-template-columns:1fr;
+        padding:80px 20px;gap:40px;
+      }
+      .about__img-wrap{display:none;}
+      .links{padding:40px 20px 80px;}
+      .links__grid{grid-template-columns:1fr;}
+      .hero__chara{width:clamp(180px,65vw,280px);}
+      .hero__scroll{display:none;}
+      .glitch{font-size:clamp(1.1rem,5.5vw,1.6rem) !important;letter-spacing:.15em !important;}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- カスタムカーソル -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ローダー -->
+  <div class="loader" id="loader">
+    <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+      <defs>
+        <filter id="drop" x="-100%" y="-100%" width="250%" height="250%">
+          <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+          <feOffset dx="0" dy="60" result="offsetblur"/>
+          <feFlood flood-color="#555" flood-opacity="0.12"/>
+          <feComposite in2="offsetblur" operator="in"/>
+          <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="drop2" x="-100%" y="-100%" width="250%" height="250%">
+          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+          <feOffset dx="0" dy="6" result="offsetblur"/>
+          <feFlood flood-color="#555" flood-opacity="0.51"/>
+          <feComposite in2="offsetblur" operator="in"/>
+          <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm"/>
+          <feBlend/>
+        </filter>
+        <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="400" y1="100" x2="400" y2="600">
+          <stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0369F3"/>
+        </linearGradient>
+        <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="400">
+          <stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0408A7"/>
+        </linearGradient>
+        <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="400" y1="500" x2="400" y2="600">
+          <stop offset="0" style="stop-color:#059FF6"/><stop offset="1" style="stop-color:#0369F3"/>
+        </linearGradient>
+        <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="300">
+          <stop offset="0" style="stop-color:#02DBFE"/><stop offset="1" style="stop-color:#0369F3"/>
+        </linearGradient>
+        <clipPath id="mainMask"><circle cx="400" cy="300" r="100"/></clipPath>
+        <clipPath id="otherMask"><rect x="300" y="0" width="200" height="400" rx="100" ry="100"/></clipPath>
+      </defs>
+      <g filter="url(#drop)">
+        <g id="whole" clip-path="url(#mainMask)">
+          <g class="dots1" filter="url(#goo)" fill="url(#grad1)">
+            <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0369F3" stroke-width="23" stroke-dasharray="160 65"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/>
+          </g>
+          <g class="dots2" filter="url(#goo)" fill="url(#grad2)">
+            <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0408A7" stroke-width="23" stroke-dasharray="160 40"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/>
+          </g>
+          <g class="dots3" filter="url(#goo)" fill="url(#grad3)">
+            <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="url(#grad3)" stroke-width="23" stroke-dasharray="240"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/>
+          </g>
+          <g class="dots4" filter="url(#goo)" fill="url(#grad4)">
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/><circle class="dot" cx="0" cy="0" r="20"/>
+            <circle class="dot" cx="0" cy="0" r="20"/>
+          </g>
+        </g>
+      </g>
+      <g filter="url(#drop2)">
+        <g clip-path="url(#otherMask)">
+          <g class="dots5" fill="url(#grad2)" filter="url(#goo)">
+            <circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/>
+            <circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/>
+            <circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/>
+            <circle class="outsideDot" cx="0" cy="0" r="20"/><circle class="outsideDot" cx="0" cy="0" r="20"/>
+            <circle class="outsideDot" cx="0" cy="0" r="20"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ナビ -->
+  <header>
+    <nav class="nav" aria-label="メインナビゲーション">
+      <div class="nav__inner">
+        <span class="nav__logo">Mutsuki Rumi</span>
+        <ul class="nav__menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="PROFILE.html">Profile</a></li>
+          <li><a href="WORKS.html">Works</a></li>
+          <li><a href="HP依頼.html">Request</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="メインビジュアル">
+      <div class="hero__video-wrap" id="videoWrap">
+        <video src="hp2.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__bubbles" aria-hidden="true">
+        <svg class="bubbles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 701 1024" style="overflow:visible;">
+          <g class="bubbles-large" stroke-width="7">
+            <g><g transform="translate(10 940)"><circle cx="35" cy="35" r="35"/></g></g>
+            <g><g transform="translate(373 940)"><circle cx="35" cy="35" r="35"/></g></g>
+            <g><g transform="translate(408 940)"><circle cx="35" cy="35" r="35"/></g></g>
+            <g><g transform="translate(621 940)"><circle cx="35" cy="35" r="35"/></g></g>
+            <g><g transform="translate(179 940)"><circle cx="35" cy="35" r="35"/></g></g>
+          </g>
+          <g class="bubbles-small" stroke-width="4">
+            <g><g transform="translate(147 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(255 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(573 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(429 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(91 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(640 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(321 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(376 984)"><circle cx="15" cy="15" r="15"/></g></g>
+            <g><g transform="translate(497 984)"><circle cx="15" cy="15" r="15"/></g></g>
+          </g>
+        </svg>
+      </div>
+
+      <img src="睦月ルミ様ご依頼.png" alt="睦月ルミ" class="hero__chara" aria-hidden="true">
+      <div style="height:400px;"></div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+
+    <div class="hero__caption">
+      <h1 class="glitch" id="glitchText">ーエラーを楽しむー</h1>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" aria-label="自己紹介">
+      <div class="about__img-wrap" data-fade>
+        <img src="睦月ルミ様ご依頼.png" alt="睦月ルミ イラスト">
+      </div>
+      <div class="about__text" data-fade data-fade-delay="1">
+        <span class="about__label">About</span>
+        <h2 class="about__heading">ネットの奥深くに<br>眠っていた、<br>ひとつのプログラム</h2>
+        <div class="about__cards">
+          <div class="about__card">彼は夜の静寂を読み込み、月の光を自身の構成要素とすることで、この世界に実体を持っています。</div>
+          <div class="about__card">首元の黒いチョーカーは、2次元と3次元を自由に行き来するための「カギ」。</div>
+          <div class="about__card">普段は黒髪に隠れているが、感情が動いた時や、心を許した相手の前でだけ内側の青い色が覗く。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="links" aria-label="リンク集">
+      <div class="links__header">
+        <span class="links__label">Explore</span>
+        <div class="links__line"></div>
+      </div>
+      <div class="links__grid">
+        <a href="https://rumikun.booth.pm" target="_blank" rel="noopener noreferrer" class="link-card" data-fade>
+          <img src="sozai2.png" alt="Shop" class="link-card__img">
+          <div class="link-card__body">
+            <span class="link-card__tag">Shop</span>
+            <p class="link-card__title">ルミくん's BOOTH</p>
+          </div>
+        </a>
+        <a href="PROFILE.html" class="link-card" data-fade data-fade-delay="1">
+          <img src="のみ.jpg" alt="Profile" class="link-card__img">
+          <div class="link-card__body">
+            <span class="link-card__tag">Profile</span>
+            <p class="link-card__title">睦月ルミについて</p>
+          </div>
+        </a>
+        <a href="WORKS.html" class="link-card" data-fade data-fade-delay="2">
+          <img src="のみ.jpg" alt="Works" class="link-card__img">
+          <div class="link-card__body">
+            <span class="link-card__tag">Works</span>
+            <p class="link-card__title">配信・動画一覧</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Copyright &copy; 2026 Mutsuki Rumi All rights reserved.</p>
+  </footer>
+
+  <noscript><style>.loader{display:none;}[data-fade]{opacity:1;transform:none;}</style></noscript>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    /* ── カスタムカーソル ── */
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx+'px';
+      cursor.style.top  = my+'px';
+    });
+
+    (function animRing(){
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx+'px';
+      ring.style.top  = ry+'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    document.querySelectorAll('a,button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hovered');
+        ring.classList.add('hovered');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hovered');
+        ring.classList.remove('hovered');
+      });
+    });
+
+    /* ── ローダー ── */
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      gsap.set('svg', { visibility: 'visible' });
+      gsap.set('.dot', { transformOrigin:'50% 50%', attr:{ cx:'random(350,450)', cy:440, r:'random(4,20)' } });
+      gsap.set('.outsideDot', { transformOrigin:'50% 50%', attr:{ cx:'random(370,420)', cy:420, r:'random(3,19)' } });
+      gsap.to('.dots1 .dot', { duration:'random(2,8)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'linear' }).seek(100);
+      gsap.to('.dots2 .dot', { duration:'random(2,5)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'sine.in' }).seek(100);
+      gsap.to('.dots3 .dot', { duration:'random(6,12)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'sine.in' }).seek(100);
+      gsap.to('.dots4 .dot', { duration:'random(3,9)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'sine.in' }).seek(100);
+      gsap.to('.dots5 .outsideDot', { duration:'random(3,9)', attr:{ cy:'random(-220,-320)', r:0 }, stagger:{ each:.16, repeat:-1 }, ease:'power2.in' }).seek(100);
+      gsap.to('.outline', { duration:gsap.utils.wrap([7,6.1,5.2]), svgOrigin:'400 300', rotation:gsap.utils.wrap([-360,-360]), ease:'linear', stagger:{ each:1, repeat:-1 } }).seek(200);
+      setTimeout(() => {
+        loader.classList.add('hide');
+        setTimeout(() => { loader.style.display='none'; }, 400);
+      }, 2000);
+    });
+
+    /* ── ページ遷移 ── */
+    document.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#')) return;
+        e.preventDefault();
+        const loader = document.getElementById('loader');
+        loader.style.display='flex'; loader.style.opacity='1';
+        loader.classList.remove('hide');
+        gsap.set('#mainSVG',{ visibility:'visible' });
+        gsap.to('.dots1 .dot',{ duration:'random(2,8)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'linear' }).seek(100);
+        gsap.to('.dots2 .dot',{ duration:'random(2,5)', attr:{ cy:'random(-220,-320)' }, stagger:{ each:.16, repeat:-1 }, ease:'sine.in' }).seek(100);
+        gsap.to('.outline',{ duration:gsap.utils.wrap([7,6.1,5.2]), svgOrigin:'400 300', rotation:gsap.utils.wrap([-360,-360]), ease:'linear', stagger:{ each:1, repeat:-1 } }).seek(200);
+        setTimeout(() => { window.location.href = href; }, 800);
+      });
+    });
+
+    /* ── グリッチテキスト（1ブロックのみ・複製なし） ── */
+    const glitchEl = document.getElementById('glitchText');
+    const rawText  = glitchEl.innerText;
+    glitchEl.innerHTML = '';
+
+    const block1 = document.createElement('div');
+    block1.classList.add('block');
+    for (const ch of rawText) {
+      const sp = document.createElement('span');
+      sp.classList.add('letter');
+      sp.innerText = ch.trim() === '' ? '\xa0' : ch;
+      block1.appendChild(sp);
+    }
+    glitchEl.appendChild(block1);
+
+    /* 2ブロック目（ホバー後に見えるアクセントカラー版）*/
+    const block2 = block1.cloneNode(true);
+    glitchEl.appendChild(block2);
+
+    /* ── IntersectionObserver ── */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-fade]').forEach(el => io.observe(el));
+
+    /* ── 流れ星 ── */
+    const vw = document.getElementById('videoWrap');
+    if (vw) {
+      vw.addEventListener('mousemove', e => {
+        const r = vw.getBoundingClientRect();
+        const star = document.createElement('div');
+        star.classList.add('star-particle');
+        star.style.left = (e.clientX - r.left)+'px';
+        star.style.top  = (e.clientY - r.top)+'px';
+        vw.appendChild(star);
+        setTimeout(() => star.remove(), 600);
+      });
+    }
+  </script>
+</body>
+</html>

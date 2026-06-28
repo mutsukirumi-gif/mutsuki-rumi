@@ -1,0 +1,833 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Zen Maru Gothic", sans-serif;
+  background-color: #e7e7e7;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family : "コーポレートロゴ", "游明朝", serif;
+  font-weight: 900;
+  color: #b2d8ff;
+  margin-top: 20px;
+}
+
+/* ── ヘッダー ── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  color: #333;
+  padding: 0 200px;
+  user-select: none;
+}
+
+.menu {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  gap: 150px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: hsl(0, 0%, 49%);
+  display: inline-block;
+  transition: color 0.3s ease;
+  font-size: 24px;
+  border: none;
+  white-space: nowrap;
+  font-weight: 200;
+  background: linear-gradient(90deg, #B5D4F4, #042C53);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.menu a:hover{
+  background-position: 0% 0;  /* 左から右に色が流れる */
+  transition: background-position 0.4s ease;
+}
+
+/* ── プロフィールページ ── */
+.profile-main {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px 40px;
+  min-height: 100vh;
+}
+
+/* ── ウィンドウ ── */
+.profile-window {
+  width: 1000px;
+  background: #ff0909;
+  border-radius: 14px;
+  border: 1px solid #c8dff4;
+  box-shadow: 0 4px 24px rgba(4, 44, 83, 0.08);
+  margin-top: 0px;
+  position: relative;
+}
+
+/* タイトルバー */
+.window-titlebar {
+  background: #E6F1FB;
+  border-bottom: 1px solid #c8dff4;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.dot:hover { filter: brightness(0.85); }
+.dot-r { background: #ffffff; }
+.dot-y { background: #effdff; }
+.dot-b { background: #B5D4F4; }
+
+/* URLバー */
+.window-url {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 20px;
+  padding: 3px 14px;
+  margin: 0 12px;
+}
+
+.window-url input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 11px;
+  color: #8a8a8a;
+  text-align: center;
+  background: transparent;
+  font-family: "Zen Maru Gothic", sans-serif;
+  cursor: text;
+}
+
+.window-url input:focus {
+  color: #042C53;
+  text-align: left;
+}
+
+/* タブ */
+.window-tabs {
+  display: flex;
+  background: #f9fcff;
+  border-bottom: 1px solid #686868;
+  padding: 0 12px;
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+.tab {
+  width: 200px;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: #98cbff;
+  background: #e8f5ff;
+  border: 1px solid #c8dff4;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 6px;
+}
+
+.tab:hover { background: #EEF5FC; }
+
+.tab.active {
+  background: #fff;
+  color: #042C53;
+  font-weight: 700;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+}
+
+/* コンテンツエリア */
+.window-content {
+  display: flex;
+  gap: 0;
+  padding: 32px;
+  height: 700px;
+  text-align: left;
+  overflow: auto;
+  background-color: #f3f3f3;
+}
+
+/* 立ち絵＋名前 */
+.profile-image {
+  width: 450px;
+  flex-shrink: 0;
+  flex-direction: column;  /* 縦並び */
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-image img.img-leave {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.profile-image img.img-enter {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* 名前 */
+.profile-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #042C53;
+  text-align: center;
+  font-family: "M PLUS 1", sans-serif;
+}
+
+/* タブエリア */
+.tab-area {
+  flex: 1;
+  height: auto;
+  overflow-y: auto;
+  position: relative;
+  min-height: 0;
+  overflow-y: visible;
+}
+
+.tab-area::-webkit-scrollbar { width: 6px; }
+.tab-area::-webkit-scrollbar-track { background: #E6F1FB; }
+.tab-area::-webkit-scrollbar-thumb {
+  background: #B5D4F4;
+  border-radius: 10px;
+}
+
+.tab-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  padding: 20px;
+  overflow-y: auto; 
+}
+
+.tab-content.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.tab-content.leave {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* dl */
+dl {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+  margin-top: 0px;
+  margin-left: -40px;
+}
+
+dt {
+  color: #707070;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #c8dff4;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+dd {
+  color: #525355;
+  margin-left: 0;
+  font-size: 14px;
+  margin-top: 10px;
+  border-bottom: 1px solid #c8dff4;
+  font-weight: 400;
+}
+
+.followers{
+  margin-top: 30px;
+  align-items: left;
+  justify-content: left;
+  margin-left: -40px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #8a8a8a;
+}
+
+.followers dd {
+  border-bottom: none;  /* ← 追加 */
+}
+
+.bold{
+  font-weight: 1000;
+  font-size: 50px;
+  margin-right: 20px;
+}
+
+
+
+.tree {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree li {
+  position: relative;
+  padding-left: 20px;
+  line-height: 2;
+}
+
+.tree li::before {
+  content: '├';
+  position: absolute;
+  left: 0;
+  color: #378ADD;
+}
+
+.tree li:last-child::before {
+  content: '└';
+}
+
+.tree ul {
+  list-style: none;
+  padding-left: 16px;
+}
+
+
+/* ── 3. 追加する文字をグリッドの制限から「解放」して中央寄せにする ── */
+.profile-bottom-text {
+  grid-column: 1 / -1; /* 💡 グリッドの枠（2列）をぶち抜いて、横幅いっぱいに広げる */
+  width: 100%;
+  text-align: center;  /* 💡 これで画像と説明文の両方をまたいだ「中央」になります */
+  margin-top: 80px;    /* 上（dl）とのすき間を大きくあけて、スクロールで出す */
+  padding-bottom: 40px;/* スクロールしたときの一番下の余白 */
+}
+
+.profile-bottom-text h2 {
+  font-family: "游明朝", sans-serif;
+  font-size: 32px;
+  color: #042C53;
+  font-weight: 900;
+  margin-top : 20px;
+}
+
+.profile-bottom-text p{
+  margin-top: 60px;
+}
+
+.profile-bottom-text-2 {
+  grid-column: 1 / -1; /* 💡 グリッドの枠（2列）をぶち抜いて、横幅いっぱいに広げる */
+  width: 100%;
+  text-align: center;  /* 💡 これで画像と説明文の両方をまたいだ「中央」になります */
+  margin-top: 80px;    /* 上（dl）とのすき間を大きくあけて、スクロールで出す */
+  padding-bottom: 40px;/* スクロールしたときの一番下の余白 */
+}
+
+.profile-bottom-text-2 h2{
+  font-family: "游明朝", sans-serif;
+  font-size: 32px;
+  color: #042C53;
+  font-weight: 900;
+  margin-top : 20px;
+}
+
+.profile-bottom-text-2 p{
+  margin-top: 60px;
+}
+
+.intro-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%; 
+  margin-top: 20px;
+}
+
+/* 後ろのウィンドウ1枚目 */
+.profile-window::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 100%;
+  height: 100%;
+  background: #f2f8ff;
+  border-radius: 14px;
+  border: 1px solid #c8dff4;
+  z-index: -1;
+}
+
+/* 後ろのウィンドウ2枚目 */
+.profile-window::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 100%;
+  height: 100%;
+  background: #e9e9e9;
+  border-radius: 14px;
+  border: 1px solid #d3d3d3;
+  z-index: -2;
+}
+
+.window-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #c8dff4;
+  color: #378ADD;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.window-close:hover {
+  background: #F4C8DB;
+  color: #fff;
+  border-color: #F4C8DB;
+}
+
+.radar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.radar-title {
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 18px;
+  color: #9c9c9c;
+  letter-spacing: 0.1em;
+  align-self: flex-start;
+}
+
+.radar-chart {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+
+.radar-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #E6F1FB;
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #378ADD;
+  font-weight: 700;
+}
+
+.stat-value {
+  font-size: 18px;
+  color: #042C53;
+  font-weight: 900;
+  font-family: "M PLUS 1", sans-serif;
+}
+
+.param-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  padding: 20px;
+  height: 100%;
+}
+
+.sns-links {
+  display: flex;
+  gap: 8px;          /* 16px → 8px に小さく */
+  align-items: left;
+  margin-top: 16px;
+}
+
+.sns-links a {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+.sns-links img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;   /* contain → cover に変更 */
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.intro-left{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+}
+
+.MBTI {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: -40px;
+}
+
+.MBTI h3 {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 20px;
+  color: #4e4e4e;
+  font-weight: 700;
+}
+
+.MBTI p {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 18px;
+  color: #525355;
+  font-weight: 400;
+}
+
+/* parameterのレイアウト */
+
+.param-layout {
+  display: flex;
+  flex-direction: row;   /* 左：立ち絵　右：param-info */
+  align-items: flex-start;  /* 上揃えに変更 */
+  gap: 32px;
+  padding: 20px;
+  height: 100%;
+}
+
+/* 立ち絵＋名前 */
+.param-illust {
+  width: 400px;
+  flex-shrink: 0;
+  display: flex;    
+  flex-direction: column;  /* 縦並び */
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+
+.param-illust img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.param-info{
+  display: flex;
+  flex-direction: column;  /* 縦並び */
+  gap: 24px;
+  flex: 1;
+}
+
+.log{
+  margin-top: -20px;
+}
+
+.log p{
+  font-family: "明朝体", "游明朝", serif;
+  font-size: 14px;
+  font-weight: 200;
+  color: #525355;
+  gap: 12px;
+  padding: 10px;
+}
+
+.log h2{
+  border-bottom: 1px solid #c8dff4;
+}
+
+/* ファンの方へタブ */
+/* メッセージレイアウト */
+
+.message-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 70px;
+  align-items: center;
+}
+
+.message-layout h2{
+  font-family: "游明朝", serif;
+  font-size: 32px;
+  margin-top: -50px;
+}
+
+.message-layout p{
+  font-family: "明朝体", "游明朝", serif;
+  font-size: 14px;
+  font-weight: 200;
+  color: #525355;
+  gap: 12px;
+  padding: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.message-layout p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #000;
+  width: 100%;  /* mainの中で100%にする */
+  display: block;  /* ← 追加 */
+}
+
+@media (max-width: 768px) {
+
+  /* ── プロフィールページ全体 ── */
+  .profile-main {
+    padding: 80px 16px 40px;
+  }
+
+  /* ── ウィンドウ ── */
+  .profile-window {
+    width: 100%;
+  }
+
+  /* ── タブ ── */
+  .window-tabs {
+    gap: 2px;
+    padding: 0 6px;
+  }
+
+  .tab {
+    width: auto;
+    flex: 1;
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  /* ── コンテンツエリア ── */
+  .window-content {
+    padding: 16px;
+    height: auto;
+    min-height: 600px;
+  }
+
+  /* ── 自己紹介タブ ── */
+  .intro-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .profile-image {
+    width: 100%;
+  }
+
+  .profile-image img {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .intro-right {
+    width: 100%;
+  }
+
+  dl {
+    margin-left: 0;
+    grid-template-columns: 90px 1fr;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  dt, dd {
+    font-size: 12px;
+  }
+
+  .followers {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  .bold {
+    font-size: 32px;
+  }
+
+  .sns-links img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile-bottom-text,
+  .profile-bottom-text-2 {
+    margin-top: 40px;
+    padding-bottom: 20px;
+  }
+
+  .profile-bottom-text h2,
+  .profile-bottom-text-2 h2 {
+    font-size: 20px;
+  }
+
+  .profile-bottom-text p,
+  .profile-bottom-text-2 p {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+  /* ── パラメータタブ ── */
+  .param-layout {
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+  }
+
+  .param-illust {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .param-illust img {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .param-info {
+    width: 100%;
+  }
+
+  .radar-chart {
+    max-width: 100%;
+  }
+
+  .log h2 {
+    font-size: 16px;
+  }
+
+  .log p {
+    font-size: 13px;
+  }
+
+  /* ── ファンへタブ ── */
+  .message-layout {
+    align-items: center;
+    text-align: center;
+  }
+
+  .message-layout p {
+    font-size: 8px;  /* 13px → 12px */
+    line-height: 1.8;
+    text-align: center;
+    width: 100%;
+    padding: 6px;    /* paddingを減らす */
+  }
+
+  .message-layout h2 {
+    font-size: 18px;
+  }
+  /* ── ヘッダー ── */
+  .header {
+    padding: 0 10px;
+  }
+
+  .menu {
+    gap: 8px;
+    font-size: 11px;
+    padding: 8px 4px;
+    margin-bottom: 0;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .menu a {
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .MBTI{
+    margin-left: 20px;
+    text-align: left;  /* left → center */
+  }
+
+  .tab-content .divider {
+    width: 100%;
+  }
+
+  .intro-right .divider {
+  width: calc(100% + 40px);  /* margin-leftの分を補正 */
+  margin-left: -40px;
+  }
+}
+
+.tab-content .divider {
+  position: relative;
+  left: -20px;          /* paddingの分だけ左にずらす */
+  width: calc(100% + 40px) !important;  /* !important を追加 */
+  margin: 20px 0;
+}

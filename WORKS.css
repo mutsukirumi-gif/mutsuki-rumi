@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Zen Maru Gothic", sans-serif;
+  background-color: #e7e7e7;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family : "コーポレートロゴ", "游明朝", serif;
+  font-weight: 1000;
+  color: #747474;
+  margin-top: 10px;
+}
+
+/* ── ヘッダー ── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  color: #333;
+  padding: 0 200px;
+  user-select: none;
+}
+
+.menu {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  gap: 150px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: hsl(0, 0%, 49%);
+  display: inline-block;
+  transition: color 0.3s ease;
+  font-size: 24px;
+  border: none;
+  white-space: nowrap;
+  font-weight: 200;
+  background: linear-gradient(90deg, #B5D4F4, #042C53);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.menu a:hover{
+  background-position: 0% 0;  /* 左から右に色が流れる */
+  transition: background-position 0.4s ease;
+}
+
+/* ── プロフィールページ ── */
+.profile-main {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px 40px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.works-list { /*作品リスト*/
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.game-item,
+.study-item,
+.TALK-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;   /* 300px → 400px */
+  padding: 20px;
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 50px;
+  transition: transform 0.3s ease;  /* ← 追加 */
+  position: relative;   /* ← 追加 */
+  overflow: hidden;     /* ← 追加 */
+}
+
+/* ストライプのアニメーション */
+.game-item,
+.study-item,
+.TALK-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ストライプアニメーション削除 → 背景スライドに変更 */
+.game-item::after,
+.study-item::after,
+.TALK-item::after {
+  background: #B5D4F4;  /* パステルブルー */
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: .3s cubic-bezier(0.45, 0, 0.55, 1);
+  z-index: -1;
+}
+
+.game-item:hover::after,
+.study-item:hover::after,
+.TALK-item:hover::after {
+  transform: scale(1, 1);
+}
+
+/* ::before は削除 */
+.game-item::before,
+.study-item::before,
+.TALK-item::before {
+  display: none;
+}
+
+@keyframes stripe-slide {
+  0% {
+    top: -100%;
+    left: -100%;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+  }
+}
+
+
+.game-item img:hover,
+.study-item img:hover,
+.TALK-item img:hover {
+  transform: scale(1.05);  /* ← 少し大きくなる */
+}
+
+.game-item p,
+.study-item p,
+.TALK-item p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.game-item img{
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.study-item img{
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.TALK-item img{
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+main{
+  background-image: url('背景5.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* スクロールしても固定 */
+  margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+
+  /* ── WORKSリスト ── */
+  .works-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .game-item,
+  .study-item,
+  .TALK-item {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+  }
+
+  .game-item img,
+  .study-item img,
+  .TALK-item img {
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  .work-title {
+    font-size: 20px;
+  }
+
+  .work-description {
+    font-size: 13px;
+  }
+
+  /* ── ヘッダー ── */
+  .header {
+    padding: 0 10px;
+  }
+
+  .menu {
+    gap: 8px;
+    font-size: 11px;
+    padding: 8px 4px;
+    margin-bottom: 0;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .menu a {
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+}

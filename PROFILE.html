@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睦月ルミ - PROFILE</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@400;700;900&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="PROFILE.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+  <body>
+
+      <div class="loader">
+        <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+          <defs>
+            <filter id="drop" x="-100%" y="-100%" width="250%" height="250%">
+              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
+              <feOffset dx="0" dy="60" result="offsetblur"></feOffset>
+              <feFlood flood-color="#555" flood-opacity="0.12"></feFlood>
+              <feComposite in2="offsetblur" operator="in"></feComposite>
+              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+            </filter>
+            <filter id="drop2" x="-100%" y="-100%" width="250%" height="250%">
+              <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+              <feOffset dx="0" dy="6" result="offsetblur"></feOffset>
+              <feFlood flood-color="#555" flood-opacity="0.51"></feFlood>
+              <feComposite in2="offsetblur" operator="in"></feComposite>
+              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+            </filter>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
+              <feBlend />
+            </filter>
+            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="400" y1="100" x2="400" y2="600">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="400">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0408A7" />
+            </linearGradient>
+            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="400" y1="500" x2="400" y2="600">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="300">
+              <stop offset="0" style="stop-color:#02DBFE" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <clipPath id="mainMask"><circle cx="400" cy="300" r="100" /></clipPath>
+            <clipPath id="otherMask"><rect x="300" y="0" width="200" height="400" rx="100" ry="100" /></clipPath>
+          </defs>
+          <g filter="url(#drop)">
+            <g id="whole" clip-path="url(#mainMask)">
+              <g class="dots1" filter="url(#goo)" fill="url(#grad1)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0369F3" stroke-width="23" stroke-dasharray="160 65" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots2" filter="url(#goo)" fill="url(#grad2)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0408A7" stroke-width="23" stroke-dasharray="160 40" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots3" filter="url(#goo)" fill="url(#grad3)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="url(#grad3)" stroke-width="23" stroke-dasharray="240" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots4" filter="url(#goo)" fill="url(#grad4)">
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+            </g>
+          </g>
+          <g filter="url(#drop2)">
+            <g clip-path="url(#otherMask)">
+              <g class="dots5" fill="url(#grad2)" filter="url(#goo)">
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+    <header>
+      <div class="header">
+        <div class="menu">
+          <a href="index.html">HOME</a>
+          <a href="PROFILE.html">PROFILE</a>
+          <a href="WORKS.html">WORKS</a>
+          <a href="HP依頼.html">HP依頼</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="profile-main">
+      <div class="profile-window">
+
+        <div class="window-titlebar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-b"></span>
+          <div class="window-url">
+            <input type="text" value="mutsuki-rumi // profile" readonly>
+          </div>
+          <a class="window-close" href="https://www.youtube.com/@rumi112-c9c" target="_blank">✕</a>
+        </div>
+
+        <div class="window-tabs">
+          <button class="tab active" data-tab="intro">自己紹介</button>
+          <button class="tab" data-tab="param">パラメータ</button>
+          <button class="tab" data-tab="message">ファンの方へ</button>
+        </div>
+
+        <div class="window-content">
+
+          <!-- 右：タブエリア -->
+          <div class="tab-area">
+
+            <div class="tab-content active" id="intro">
+              <div class="intro-top"> <!-- 横並び-->
+                    <div class="profile-image"><!-- 縦並び-->
+                        <img src="睦月ルミ様ご依頼.png" alt="睦月ルミ">
+                    </div>
+                    <div class="intro-right">
+                      <dl>
+                          <dt>Name</dt><dd>睦月ルミ(むつきるみ)</dd>
+                          <dt>Birthday</dt><dd>1月1日</dd>
+                          <dt>Favorite</dt><dd>やきにく・海ぶどう</dd>
+                          <dt>Hobby</dt><dd>ネイル・料理・プログラミング</dd>
+                          <dt>Personality</dt><dd>女子力高め優しいお兄さん</dd>
+                          <dt>individuality</dt><dd>好き嫌い両極端</dd>
+                          <dt>Attribute</dt><dd>プログラマー系Vtuber</dd>
+                      </dl>
+                      <div class="followers">
+                        <p>Total Followers</p>
+                        <dd><span class="bold">1,100</span>Subscribers</dd>
+                          <ul class="tree">
+                            <li>Youtube 470 Subscribers
+                              <ul>
+                                <li>X(Twitter) 630 Followers</li>
+                              </ul>
+                            </li>
+                          </ul>
+                      </div>
+                        <div class="sns-links">
+                          <a href="https://www.youtube.com/@rumi112-c9c" target="_blank">
+                            <img src="youtube.png" alt="YouTube">
+                          </a>
+                          <a href="https://x.com/mutsuki_rumi" target="_blank">
+                            <img src="x.png" alt="X">
+                          </a>
+                        </div>
+                        <div class="MBTI">
+                          <h3>MBTI</h3>
+                          <p>ISTP(巨匠)</p>
+                          <h3>恋愛MBTI(ラブタイプ診断)</h3>
+                          <p>FAPE(最後の恋人)</p>
+                        </div>
+                      </div>
+                    </div>
+                          <div class="profile-bottom-text">
+                              <h2>睦月ルミの軌跡</h2>
+                              <p>2026:02:17準備中Vtuberとして生まれる</p>
+                              <p>2026/03/1初動画投稿</p>
+                              <p>2026:03:28初配信デビュー</p>
+                          </div>
+
+                          <div class="profile-bottom-text-2">
+                              <h2>これからの目標</h2>
+                              <p>年内チャンネル登録者1000人突破</p>
+                              <p>同時接続30人突破</p>
+                              <p>より多くの人に喜んでもらえるVtuberになれるよう努力します！</p>
+                          </div>
+                    </div>
+
+            <div class="tab-content" id="param">
+              <div class="param-layout">
+
+                <!-- 左：立ち絵 -->
+                <div class="param-illust">
+                  <img src="睦月ルミ様ご依頼.png" alt="睦月ルミ">
+                </div>
+
+                <div class="param-info">
+                <!-- 右：レーダーチャート -->
+                  <div class="radar-container">
+                    <h2 class="radar-title">//性格</h2>
+                    <svg id="radar-chart" class="radar-chart" viewBox="-40 0 440 400" xmlns="http://www.w3.org/2000/svg"></svg>
+                  </div>
+
+                  <div class="log">
+                    <h2>楽しめる形に、再設計する</h2>
+                    <p>頑張れないことを「自分のせい」にせず</p>
+                    <p>自分が楽しめる形に変えていけばいい</p>
+                    <p>勉強だって、趣味に変えてしまえばいい</p>
+                    <h2>等身大の自分でいい場所を作りたい</h2>
+                    <p>ガチじゃなくていい</p>
+                    <p>完璧じゃなくていい</p>
+                    <p>ライトでいい場所を</p>
+                    <h2>そして、いつか...</h2>
+                    <p>みんなの生活の一部になりたい。</p>
+                    <p>気軽にふと立ち寄れる、</p>
+                    <p>そんな場所を作っていきます</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-content" id="message">
+              <div class="message-layout">
+                <h2>ファンの方へ</h2>
+                <p>いつも本当にありがとう</p>
+                <p>正直に言うと、Vtuberを始めた頃の僕は、</p>
+                <p>誰も見てくれないんじゃないかって、</p>
+                <p>ずっと不安だった。</p>
+                <p>配信を開いても、視聴者ゼロのままだったらどうしよう。</p>
+                <p>動画を出しても、再生されなかったらどうしよう。</p>
+                <p>そんなことばかり考えていました。</p>
+              </div>
+              <div class="message-layout">
+                <p>だから、初めて配信に来てくれた人を見たとき、</p>
+                <p>本当に泣きそうになったんです。</p>
+                <p>みんなの存在が、どれだけ救いになったか、</p>
+                <p>今でも忘れられません。</p>
+              </div>
+              <div class="message-layout">
+                <p>今、こうして配信を開いて、</p>
+                <p>コメントが流れて、誰かが反応してくれる。</p>
+                <p>それは僕にとって、ぜんぜん当たり前じゃないんです。</p>
+                <p>平日の仕事終わりに、休日の貴重な時間に、</p>
+                <p>わざわざ僕の配信を選んで来てくれること。</p>
+                <p>それがどれだけありがたいか、言葉にしきれないくらい嬉しい。</p>
+              </div>
+              <div class="message-layout">
+                <p>これはお世辞じゃなくて、本当に、</p>
+                <p>みんなが来てくれることが、僕の支えです。</p>
+                <p>登録してくれること、</p>
+                <p>コメントしてくれること、</p>
+                <p>ただ静かに見てくれているだけでも、</p>
+                <p>そこに居てくれることが、何よりの応援になっています。</p>
+              </div> 
+              <div class="message-layout">
+                <p>僕はまだ新人Vtuberで、</p>
+                <p>できないことも、知らないことも、</p>
+                <p>不器用なところもたくさんある。</p>
+                <p>でも、こんな僕の場所に来てくれる人がいるなら、</p>
+                <p>僕はちゃんと、その時間に応えたいと思っています。</p>
+                <p>楽しい時間を、安心できる時間を、</p>
+                <p>ちゃんと作っていきたいと思っています</p>
+              </div>
+              <div class="message-layout">
+                <p>そして、ここを誰かの居場所にしていけるように、</p>
+                <p>ゆっくりだけど、ちゃんと続けていきます。</p>
+                <p>本当に、いつもありがとう</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+  </body>
+</html>

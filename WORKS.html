@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睦月ルミ - WORKS</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@400;700;900&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="WORKS.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+  <body>
+      <div class="loader">
+        <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+          <defs>
+            <filter id="drop" x="-100%" y="-100%" width="250%" height="250%">
+              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
+              <feOffset dx="0" dy="60" result="offsetblur"></feOffset>
+              <feFlood flood-color="#555" flood-opacity="0.12"></feFlood>
+              <feComposite in2="offsetblur" operator="in"></feComposite>
+              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+            </filter>
+            <filter id="drop2" x="-100%" y="-100%" width="250%" height="250%">
+              <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+              <feOffset dx="0" dy="6" result="offsetblur"></feOffset>
+              <feFlood flood-color="#555" flood-opacity="0.51"></feFlood>
+              <feComposite in2="offsetblur" operator="in"></feComposite>
+              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+            </filter>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
+              <feBlend />
+            </filter>
+            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="400" y1="100" x2="400" y2="600">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="400">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0408A7" />
+            </linearGradient>
+            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="400" y1="500" x2="400" y2="600">
+              <stop offset="0" style="stop-color:#059FF6" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="400" y1="200" x2="400" y2="300">
+              <stop offset="0" style="stop-color:#02DBFE" />
+              <stop offset="1" style="stop-color:#0369F3" />
+            </linearGradient>
+            <clipPath id="mainMask"><circle cx="400" cy="300" r="100" /></clipPath>
+            <clipPath id="otherMask"><rect x="300" y="0" width="200" height="400" rx="100" ry="100" /></clipPath>
+          </defs>
+          <g filter="url(#drop)">
+            <g id="whole" clip-path="url(#mainMask)">
+              <g class="dots1" filter="url(#goo)" fill="url(#grad1)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0369F3" stroke-width="23" stroke-dasharray="160 65" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots2" filter="url(#goo)" fill="url(#grad2)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="#0408A7" stroke-width="23" stroke-dasharray="160 40" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots3" filter="url(#goo)" fill="url(#grad3)">
+                <circle class="outline" cx="400" cy="300" r="90" fill="none" stroke="url(#grad3)" stroke-width="23" stroke-dasharray="240" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+              <g class="dots4" filter="url(#goo)" fill="url(#grad4)">
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" /><circle class="dot" cx="0" cy="0" r="20" />
+                <circle class="dot" cx="0" cy="0" r="20" />
+              </g>
+            </g>
+          </g>
+          <g filter="url(#drop2)">
+            <g clip-path="url(#otherMask)">
+              <g class="dots5" fill="url(#grad2)" filter="url(#goo)">
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" /><circle class="outsideDot" cx="0" cy="0" r="20" />
+                <circle class="outsideDot" cx="0" cy="0" r="20" />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    <header>
+      <div class="header">
+        <div class="menu">
+          <a href="index.html">HOME</a>
+          <a href="PROFILE.html">PROFILE</a>
+          <a href="WORKS.html">WORKS</a>
+          <a href="HP依頼.html">HP依頼</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="works">
+        <div class="works-list">
+          <div class="game-item">
+            <h2 class="work-title">ゲーム配信</h2>
+            <a href="https://www.youtube.com/live/qsR4Jw2q86g?si=0BE1giVkeXZ2qh2r" target="_blank">
+              <img src="あんスタ.jpg" alt="Work 1">
+            </a>
+            <p class="work-description">あんスタ配信</p>
+            <a href="https://www.youtube.com/watch?v=CLj-F-FuhrI&t=4807s" target="_blank">
+              <img src="マイクラ.jpg" alt="Work 3">
+            </a>
+            <p class="work-description">マイクラ配信</p>
+          </div>
+          <div class="study-item">
+            <h2 class="work-title">学習コンテンツ</h2>
+            <a href="https://www.youtube.com/watch?v=IjesujZtqWc&t=63s" target="_blank">
+              <img src="プログラマー解説.jpg" alt="Work 2">
+            </a>
+            <p class="work-description">プログラマー解説</p>
+            <a href="https://www.youtube.com/watch?v=gZimz-SBgcY&t=7764s" target="_blank">
+              <img src="勉強配信.jpg" alt="Work 3">
+            </a>
+            <p class="work-description">勉強配信</p>
+          </div>
+          <div class="TALK-item">
+            <h2 class="work-title">トーク配信</h2>
+            <a href="#" target="_blank">
+              <img src="雑談1.jpg" alt="Work 3">
+            </a>
+            <p class="work-description">麻辣湯作ってみた</p>
+            <a href="https://www.youtube.com/watch?v=apIXPnGbOVo&t=2587s" target="_blank">
+              <img src="雑談2.jpg" alt="Work 3">
+            </a>
+            <p class="work-description">雑談配信</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="WORKS.js"></script>
+  </body>
+</html>
