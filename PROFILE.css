@@ -83,7 +83,7 @@ h1, h2, h3 {
 /* ── ウィンドウ ── */
 .profile-window {
   width: 1000px;
-  background: #ff0909;
+  background: transparent;
   border-radius: 14px;
   border: 1px solid #c8dff4;
   box-shadow: 0 4px 24px rgba(4, 44, 83, 0.08);
