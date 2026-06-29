@@ -831,3 +831,16 @@ dd {
   width: calc(100% + 40px) !important;  /* !important を追加 */
   margin: 20px 0;
 }
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(244,248,255,.75);backdrop-filter:blur(16px);border-bottom:1px solid #daeeff;}
+.nav__inner{max-width:1100px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;}
+.nav__logo{font-family:'M PLUS 1',sans-serif;font-size:.75rem;font-weight:900;letter-spacing:.2em;color:#042C53;text-transform:uppercase;}
+.nav__menu{display:flex;gap:40px;list-style:none;}
+.nav__menu a{font-family:'M PLUS 1',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7a9bbf;padding:4px 14px;border-radius:9999px;transition:background .25s,color .25s;}
+.nav__menu a:hover{background:#B5D4F4;color:#042C53;}
+
+@media(max-width:768px){
+  .nav__inner{padding:12px 16px;}
+  .nav__menu{gap:4px;}
+  .nav__menu a{font-size:.62rem;padding:4px 8px;flex-shrink:0;white-space:nowrap;}
+}
